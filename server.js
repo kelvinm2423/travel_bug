@@ -38,20 +38,10 @@ app.get("/", function(req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
 
-// This is the route we will send GET requests to retrieve our most recent click data.
+// This is the route we will send GET requests to retrieve.
 // We will call this route the moment our page gets rendered
 app.get("/api", function(req, res) {
 
-  // This GET request will search for the latest clickCount
-  Click.find({}).exec(function(err, doc) {
-
-    if (err) {
-      console.log(err);
-    }
-    else {
-      res.send(doc);
-    }
-  });
 });
 
 // This is the route we will send POST requests to save each click.
@@ -59,7 +49,7 @@ app.get("/api", function(req, res) {
 app.post("/api", function(req, res) {
 
   var  = req.body.var;
-  var  = parseInt(req.body.something);
+  var  = parseInt(req.body.____);
 
 // -------------------------------------------------
 

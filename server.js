@@ -2,7 +2,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
-var mongoose = require("mongoose");
+// var mongoose = require("mongoose");
 //blah
 var app = express();
 // Sets an initial port. We'll use this later in our listener
@@ -20,16 +20,16 @@ app.use(express.static("./public"));
 // -------------------------------------------------
 
 // MongoDB configuration (Change this URL to your own DB)
-mongoose.connect("mongodb:url_here");
-var db = mongoose.connection;
+// mongoose.connect("mongodb:url_here");
+// var db = mongoose.connection;
 
-db.on("error", function(err) {
-  console.log("Mongoose Error: ", err);
-});
+// db.on("error", function(err) {
+//   console.log("Mongoose Error: ", err);
+// });
 
-db.once("open", function() {
-  console.log("Mongoose connection successful.");
-});
+// db.once("open", function() {
+//   console.log("Mongoose connection successful.");
+// });
 
 // -------------------------------------------------
 
@@ -48,9 +48,9 @@ app.get("/api", function(req, res) {
 // We will call this route the moment the "click" or "reset" button is pressed.
 app.post("/api", function(req, res) {
 
-  var  = req.body.var;
-  var  = parseInt(req.body.____);
-
+  // var  = req.body.var;
+  // var  = parseInt(req.body.____);
+});
 // -------------------------------------------------
 
 // Starting our express server

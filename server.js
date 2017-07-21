@@ -19,8 +19,7 @@ app.use(express.static("./public"));
 
 // -------------------------------------------------
 
-// MongoDB configuration (Change this URL to your own DB)
-mongoose.connect("mongodb:url_here");
+mongoose.connect("mongodb://localhost:27017/papertrails");
 var db = mongoose.connection;
 
 db.on("error", function(err) {
@@ -46,10 +45,10 @@ app.get("/api", function(req, res) {
 
 // This is the route we will send POST requests to save each click.
 // We will call this route the moment the "click" or "reset" button is pressed.
-app.post("/api", function(req, res) {
+// app.post("/api", function(req, res) {
 
-  var  = req.body.var;
-  var  = parseInt(req.body.____);
+//   var  = req.body.var;
+//   var  = parseInt(req.body.____);
 
 // -------------------------------------------------
 

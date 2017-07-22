@@ -36,17 +36,19 @@ app.use(express.static("./public"));
 // Main "/" Route. This will redirect the user to our rendered React application
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/public/index.html");
+
 });
 
 // This is the route we will send GET requests to retrieve.
 // We will call this route the moment our page gets rendered
 app.get("/api", function(req, res) {
-
+	res.send('hello');
 });
 
 // This is the route we will send POST requests to save each click.
 // We will call this route the moment the "click" or "reset" button is pressed.
-app.post("/api", function(req, res) {
+app.post("/api2", function(req, res) {
+	console.log(req.body.city);
 
   // var  = req.body.var;
   // var  = parseInt(req.body.____);

@@ -2,8 +2,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
-// var mongoose = require("mongoose");
-//blah
+var mongoose = require("mongoose");
 var app = express();
 // Sets an initial port. We'll use this later in our listener
 var PORT = process.env.PORT || 3000;
@@ -19,17 +18,16 @@ app.use(express.static("./public"));
 
 // -------------------------------------------------
 
-// MongoDB configuration (Change this URL to your own DB)
-// mongoose.connect("mongodb:url_here");
-// var db = mongoose.connection;
+mongoose.connect("mongodb://localhost:27017/papertrails");
+var db = mongoose.connection;
 
-// db.on("error", function(err) {
-//   console.log("Mongoose Error: ", err);
-// });
+db.on("error", function(err) {
+  console.log("Mongoose Error: ", err);
+});
 
-// db.once("open", function() {
-//   console.log("Mongoose connection successful.");
-// });
+db.once("open", function() {
+  console.log("Mongoose connection successful.");
+});
 
 // -------------------------------------------------
 
@@ -46,13 +44,27 @@ app.get("/api", function(req, res) {
 });
 
 // This is the route we will send POST requests to save each click.
+<<<<<<< HEAD
 // We will call this route the moment the "click" or "reset" button is pressed.
 app.post("/api2", function(req, res) {
 	console.log(req.body.city);
+=======
+// app.post("/submit", function(req, res) {
+//   console.log(req.body);
+//   db.users.insert(req.body, function(error, saved) {
+//     // Log any errors
+//     if (error) {
+//       console.log(error);
+//     }
+//     // Otherwise, send the note back to the browser
+//     // This will fire off the success function of the ajax request
+//     else {
+//       res.send(saved);
+//     }
+//   });
+// });
+>>>>>>> 6a5c294990caec0ff764075a7af95080f86aedf8
 
-  // var  = req.body.var;
-  // var  = parseInt(req.body.____);
-});
 // -------------------------------------------------
 
 // Starting our express server

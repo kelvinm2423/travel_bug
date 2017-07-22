@@ -1,7 +1,7 @@
 {
   "settings": {
     "name": "UCF Final Project",
-    "currentPage": "index.html",
+    "currentPage": "button.html",
     "theme": {
       "name": "default",
       "title": "Mobirise",
@@ -53,7 +53,7 @@
           },
           "title": "TBD",
           "text": "This app is about transparent government spending and policitian contribution with digestable, easy to read graphs.",
-          "buttons": "<a data-app-btn=\"true\" class=\"mbr-buttons__btn btn btn-lg btn-warning animated fadeInUp delay\" href=\"https://mobirise.com\" data-toolbar=\"-mbrBtnMove\">LOGIN</a>"
+          "buttons": "<a data-app-btn=\"true\" class=\"mbr-buttons__btn btn btn-lg btn-warning animated fadeInUp delay\" href=\"button.html\" data-toolbar=\"-mbrBtnMove\">LOGIN</a>"
         }
       ]
     },

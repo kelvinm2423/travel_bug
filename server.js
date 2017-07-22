@@ -43,11 +43,20 @@ app.get("/api", function(req, res) {
 });
 
 // This is the route we will send POST requests to save each click.
-// We will call this route the moment the "click" or "reset" button is pressed.
-// app.post("/api", function(req, res) {
-
-//   var  = req.body.var;
-//   var  = parseInt(req.body.____);
+// app.post("/submit", function(req, res) {
+//   console.log(req.body);
+//   db.users.insert(req.body, function(error, saved) {
+//     // Log any errors
+//     if (error) {
+//       console.log(error);
+//     }
+//     // Otherwise, send the note back to the browser
+//     // This will fire off the success function of the ajax request
+//     else {
+//       res.send(saved);
+//     }
+//   });
+// });
 
 // -------------------------------------------------
 

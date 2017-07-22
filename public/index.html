@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title></title>
-<meta name="google-signin-client_id" content="https://121912769436-cgop2npb0btvkgd468ugp74c89goojr6.apps.googleusercontent.com/">
+  <title></title>
 </head>
+
 <body>
-<h1>Hi</h1>
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
+  <form method="POST" action="/api2">
+    <input type="text" name="city" class="city-select">
+    <button type='submit' class="btn btn-warning final">submit</button>
+  </form>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+  // $('.final').click(function() {
+  // 	var city = $('.city-select').val();
+  // 	$.ajax({
+  // 		url: 'https://api.teleport.org/api/urban_areas/slug:' + city +'/scores/',
+  // 		type: 'POST',
 
-<script src="http://apis.google.com/js/platform.js" async defer>
-	gapi.load('auth2', function(){
-		gapi.auth2.init();
-	});
-</script>
+  // 	})
+  // });
 
+  </script>
 </body>
-</html>
 
+</html>
 <!-- api key AIzaSyB06mjQLRQZnf32CuvyUwvnnUXVnb8afpo -->

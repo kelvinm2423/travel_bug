@@ -19,7 +19,7 @@ app.use(express.static("./public"));
 
 // -------------------------------------------------
 
-mongoose.connect("mongodb://localhost:27017/papertrails");
+mongoose.connect("mongodb:url_here");
 var db = mongoose.connection;
 
 db.on("error", function(err) {
@@ -35,30 +35,23 @@ db.once("open", function() {
 // Main "/" Route. This will redirect the user to our rendered React application
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/public/index.html");
+
 });
 
 // This is the route we will send GET requests to retrieve.
 // We will call this route the moment our page gets rendered
 app.get("/api", function(req, res) {
-
+  res.send('hello');
 });
 
 // This is the route we will send POST requests to save each click.
-// app.post("/submit", function(req, res) {
-//   console.log(req.body);
-//   db.users.insert(req.body, function(error, saved) {
-//     // Log any errors
-//     if (error) {
-//       console.log(error);
-//     }
-//     // Otherwise, send the note back to the browser
-//     // This will fire off the success function of the ajax request
-//     else {
-//       res.send(saved);
-//     }
-//   });
-// });
+// We will call this route the moment the "click" or "reset" button is pressed.
+app.post("/api2", function(req, res) {
+  console.log(req.body.city);
 
+  // var  = req.body.var;
+  // var  = parseInt(req.body.____);
+});
 // -------------------------------------------------
 
 // Starting our express server

@@ -19,7 +19,7 @@ app.use(express.static("./public"));
 
 // -------------------------------------------------
 
-mongoose.connect("mongodb:url_here");
+mongoose.connect("mongodb://localhost:27017/papertrails");
 var db = mongoose.connection;
 
 db.on("error", function(err) {

@@ -4,18 +4,12 @@ var Schema = mongoose.Schema;
 // Create Schema and Model
 
 var usersSchema = new Schema({
-	name: "Kelvin",
-	email: "kelvinm1724@gmail.com",
-	phone_number: 954-778-0357,
-	comment: "I think Donald is crazy"
-	});
-// ({
-// 	name: string,
-// 	email: string,
-// 	phone_number: number,
-// 	comment: string
-// });
+	name: String,
+	email: String,
+	phone_number: Number,
+	comment: String
+});
 
-var userModel = mongoose.model("users", usersSchema);
+var userModel = mongoose.model("userModel", usersSchema);
 
 module.exports = userModel;

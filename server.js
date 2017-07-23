@@ -5,6 +5,7 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 var data = require("./models/data");
 var app = express();
+var dbConnect = mongoose.connect("mongodb://localhost:27017/papertrails");
 // Sets an initial port. We'll use this later in our listener
 var PORT = process.env.PORT || 3000;
 
@@ -52,7 +53,7 @@ app.post("/api2", function(req, res) {
 });
 //to save form comments
 app.post('/post-feedback', function(req, res) {
-	db.then(function(db) {
+	dbConnect.then(function(db) {
 		delete req.body._id; //for safety reasons, to make sure no one provides another id and delete others
 		db.collection('papertrails').insertOne(req.body);
 	});
@@ -61,7 +62,7 @@ app.post('/post-feedback', function(req, res) {
 
 //to view the comments
 app.get('/view-feedbacks',  function(req, res) {
-    db.then(function(db) {
+    dbConnect.then(function(db) {
         db.collection('papertrails').find({}).toArray().then(function(feedbacks) {
             res.status(200).json(feedbacks);
         });

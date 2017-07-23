@@ -49,8 +49,23 @@ app.get("/api", function(req, res) {
 app.post("/api2", function(req, res) {
   console.log(req.body.city);
 
-  // var  = req.body.var;
-  // var  = parseInt(req.body.____);
+});
+//to save form comments
+app.post('/post-feedback', function(req, res) {
+	db.then(function(db) {
+		delete req.body._id; //for safety reasons, to make sure no one provides another id and delete others
+		db.collection('papertrails').insertOne(req.body);
+	});
+	res.send('Comment received!' + JSON.stringify(req.body));
+});
+
+//to view the comments
+app.get('/view-feedbacks',  function(req, res) {
+    db.then(function(db) {
+        db.collection('papertrails').find({}).toArray().then(function(feedbacks) {
+            res.status(200).json(feedbacks);
+        });
+    });
 });
 // -------------------------------------------------
 

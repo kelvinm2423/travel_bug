@@ -20,6 +20,17 @@
   <div id="city-info-2">
   	
   </div>
+
+   <form method="POST" action="/post-feedback">
+        <label>Name:<input type="text" name="user-name" required></label>
+        <br>
+        <label>Comment:<br><textarea name="comment"></textarea></label>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+
+  <a href="/view-feedbacks">View feedbacks</a>
+
    <script type="text/javascript" src="./autocomplete.js"></script>
   <script type="text/javascript" src="./city.js"></script>
   <script type="text/javascript" src='./bundle.js'></script>

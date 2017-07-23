@@ -10,18 +10,19 @@
     <input type="text" name="city" class="city-select">
     <button type='submit' class="btn btn-warning final">submit</button>
   </form>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-  <script type="text/javascript">
-  // $('.final').click(function() {
-  // 	var city = $('.city-select').val();
-  // 	$.ajax({
-  // 		url: 'https://api.teleport.org/api/urban_areas/slug:' + city +'/scores/',
-  // 		type: 'POST',
-
-  // 	})
-  // });
-
-  </script>
+  <form method="POST" action="/api2">
+    <input type="text" name="city" class="city-select2">
+    <button type='submit' class="btn btn-warning final2">submit</button>
+  </form>
+  <div id="city-info-1">
+  	
+  </div>
+  <div id="city-info-2">
+  	
+  </div>
+   <script type="text/javascript" src="./autocomplete.js"></script>
+  <script type="text/javascript" src="./city.js"></script>
+  <script type="text/javascript" src='./bundle.js'></script>
 </body>
 
 </html>

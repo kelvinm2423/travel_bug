@@ -3,9 +3,8 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
-var data = require("./models/data");
+require("./models/data");
 var app = express();
-var dbConnect = mongoose.connect("mongodb://localhost:27017/papertrails");
 // Sets an initial port. We'll use this later in our listener
 var PORT = process.env.PORT || 3000;
 
@@ -53,20 +52,18 @@ app.post("/api2", function(req, res) {
 });
 //to save form comments
 app.post('/post-feedback', function(req, res) {
-	dbConnect.then(function(db) {
-		delete req.body._id; //for safety reasons, to make sure no one provides another id and delete others
-		db.collection('papertrails').insertOne(req.body);
-	});
-	res.send('Comment received!' + JSON.stringify(req.body));
+
+	delete req.body._id; //for safety reasons, to make sure no one provides another id and delete others
+	db.collection('usermodels').insertOne(req.body).then(function(r) {
+    res.send('Comment received!' + JSON.stringify(req.body));
+  });
 });
 
 //to view the comments
 app.get('/view-feedbacks',  function(req, res) {
-    dbConnect.then(function(db) {
-        db.collection('papertrails').find({}).toArray().then(function(feedbacks) {
-            res.status(200).json(feedbacks);
-        });
-    });
+  db.collection('usermodels').find({}).toArray().then(function(feedbacks) {
+      res.status(200).json(feedbacks);
+  });
 });
 // -------------------------------------------------
 

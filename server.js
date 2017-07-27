@@ -3,7 +3,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
-var data = require("./models/data");
+require("./models/data");
 var app = express();
 // Sets an initial port. We'll use this later in our listener
 var PORT = process.env.PORT || 3000;
@@ -49,8 +49,21 @@ app.get("/api", function(req, res) {
 app.post("/api2", function(req, res) {
   console.log(req.body.city);
 
-  // var  = req.body.var;
-  // var  = parseInt(req.body.____);
+});
+//to save form comments
+app.post('/post-feedback', function(req, res) {
+
+	delete req.body._id; //for safety reasons, to make sure no one provides another id and delete others
+	db.collection('usermodels').insertOne(req.body).then(function(r) {
+    res.send('Comment received!' + JSON.stringify(req.body));
+  });
+});
+
+//to view the comments
+app.get('/view-feedbacks',  function(req, res) {
+  db.collection('usermodels').find({}).toArray().then(function(feedbacks) {
+      res.status(200).json(feedbacks);
+  });
 });
 // -------------------------------------------------
 

@@ -59,6 +59,7 @@ app.get('/view-feedbacks', function (req, res) {
   db.collection('usermodels').find({}).toArray().then(function (feedbacks) {
     res.status(200).json(feedbacks);
   });
+
 });
 // -------------------------------------------------
 

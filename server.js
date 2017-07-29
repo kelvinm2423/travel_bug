@@ -4,7 +4,9 @@ var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
 require("./models/data");
+
 var app = express();
+
 // Sets an initial port. We'll use this later in our listener
 var PORT = process.env.PORT || 3000;
 
@@ -14,9 +16,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-
 app.use(express.static("./public"));
 
+//-------------------------------------
+var exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 // -------------------------------------------------
 
 mongoose.connect("mongodb://localhost:27017/papertrails");
@@ -68,9 +74,18 @@ app.post('/post-feedback', function(req, res) {
 //to view the comments
 app.get('/view-feedbacks',  function(req, res) {
   db.collection('usermodels').find({}).toArray().then(function(feedbacks) {
+     for (var i = 0; i < feedbacks.length; i++) {
+       console.log(feedbacks[i].name);
+       console.log(feedbacks[i].comment);
+     };
+
       res.status(200).json(feedbacks);
-  });
+    });
+         // document.getElementById("cleaner").innerHTML = feedbacks[i].name;
+
 });
+
+
 // -------------------------------------------------
 
 // Starting our express server

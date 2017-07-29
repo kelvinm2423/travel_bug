@@ -6,7 +6,7 @@ var data = new userModel ({
 	comment: "New York is awesome"
 });
 
-      document.getElementById("cleaner").innerHTML = "feedbacks[i].name";
+      // document.getElementById("cleaner").innerHTML = "feedbacks[i].name";
 
 
 // function data(name, comment) {

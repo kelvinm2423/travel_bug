@@ -68,9 +68,14 @@ app.post('/post-feedback', function(req, res) {
 //to view the comments
 app.get('/view-feedbacks',  function(req, res) {
   db.collection('usermodels').find({}).toArray().then(function(feedbacks) {
+    
      for (var i = 0; i < feedbacks.length; i++) {
        console.log(feedbacks[i].name);
        console.log(feedbacks[i].comment);
+       // var output = document.getElementById('output');
+       // output.innerHTML = feedbacks[i].name;
+       // var jsonStr = JSON.stringify(feedbacks[i].name, feedbacks[i].comment);
+       // document.body.innerHTML = jsonStr;
      };
 
       res.status(200).json(feedbacks);

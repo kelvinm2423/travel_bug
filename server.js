@@ -38,6 +38,12 @@ app.get("/", function(req, res) {
 
 });
 
+app.get("/forum", function(req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+
+});
+
+
 // This is the route we will send GET requests to retrieve.
 // We will call this route the moment our page gets rendered
 app.get("/api", function(req, res) {

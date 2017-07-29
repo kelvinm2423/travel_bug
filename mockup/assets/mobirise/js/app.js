@@ -1,7 +1,13 @@
-// import React, { Component } from 'react';
-// import ReactDom from 'react-dom';
+import React, { Component } from 'react';
+import ReactDom from 'react-dom';
 // import $ from 'jQuery';
 
+class Authentication extends Copmponent {
+	constructor(props) {
+		super(props);
+		this.state = {info: {}}
+	}
+}
 
 // class Main extends Component {
 // 	constructor(props) {

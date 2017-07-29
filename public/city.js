@@ -59,7 +59,7 @@ $('.final2').on('click', function() {
           label: city,
           backgroundColor: 'rgb(25, 181, 254)',
 
-          borderColor: 'rgb(25, 181, 254)',
+          borderColor: 'rgb(255, 99, 132)',
           data: [data.categories[0].score_out_of_10, data.categories[7].score_out_of_10, data.categories[0].score_out_of_10, data.categories[8].score_out_of_10, data.categories[9].score_out_of_10, data.categories[12].score_out_of_10, data.categories[5].score_out_of_10],
         }]
       },

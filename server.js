@@ -19,16 +19,16 @@ app.use(express.static("./public"));
 
 // -------------------------------------------------
 
-// mongoose.connect("mongodb://localhost:27017/papertrails");
-// var db = mongoose.connection;
+mongoose.connect("mongodb://localhost:27017/papertrails");
+var db = mongoose.connection;
 
-// db.on("error", function (err) {
-//   console.log("Mongoose Error: ", err);
-// });
+db.on("error", function (err) {
+  console.log("Mongoose Error: ", err);
+});
 
-// db.once("open", function () {
-//   console.log("Mongoose connection successful.");
-// });
+db.once("open", function () {
+  console.log("Mongoose connection successful.");
+});
 
 // -------------------------------------------------
 
@@ -55,6 +55,7 @@ app.post('/post-feedback', function (req, res) {
   db.collection('usermodels').insertOne(req.body).then(function (r) {
     res.send('Comment received!' + JSON.stringify(req.body));
   });
+  console.log(req.body);
 });
 
 //to view the comments

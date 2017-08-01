@@ -6,10 +6,14 @@ import axios from 'axios';
 
 class Main extends Component {
     // @todo: set your inital state
-    state = {
-        city: '',
-        city2: ''
+   constructor(props){
+    super(props);
+        this.state = {
+            city: '',
+            city2: ''
     };
+   };
+    
 
     submitForm() {
         var city = this.state.city.replace(/\s+/g, '-').toLowerCase();

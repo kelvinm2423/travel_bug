@@ -1,4 +1,5 @@
 import React from 'react';
+import Axios from 'axios';
 
 class Child extends React.Component {
  constructor(props){
@@ -26,11 +27,20 @@ comment: ''
                     </form>
       </div>);
   }
-  submit() {
+  submit(event) {
     // axios.post('/whatever'.then)
 var name = this.state.name;
 var comment = this.state.comment;
 
+axios({
+  event.preventDefault;
+  method: 'post',
+  url: '/post-feedback',
+  data: {
+    name: name,
+    comment: comment
+  }
+});
      // console.log(dog);
 // console.log(this.state.firstName);
 

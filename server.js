@@ -52,6 +52,7 @@ app.post('/post-feedback', function (req, res) {
   db.collection('usermodels').insertOne(req.body).then(function (r) {
     res.send('Comment received!' + JSON.stringify(req.body));
   });
+  console.log(req.body);
 });
 
 //to view the comments

@@ -7,11 +7,10 @@ class Forum extends React.Component {
     this.state = {
       name: '',
       comment: ''
-  }
-
  }
 
   render() {
+<<<<<<< HEAD
     return (    <div>
                   <form type="text" action="/post-feedback">
                     <label for="name">Name</label>
@@ -39,8 +38,6 @@ class Forum extends React.Component {
         comment: comment
       }
     });
-     // console.log(dog);
-// console.log(this.state.firstName);
 
   }
 

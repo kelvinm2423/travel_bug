@@ -1,78 +1,53 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Axios from 'axios';
 
-class Forum extends Component {
-    // @todo: set your inital state
-    state = {
-        salutation: 'Hello World!'
-    }
+class Forum extends React.Component {
+ constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      comment: ''
+  }
 
+ }
 
-    /**
-     * ==================================================
-     * Main lifecycle functions
-     * ==================================================
-     */
+  render() {
+    return (    <div>
+                  <form type="text" action="/post-feedback">
+                    <label for="name">Name</label>
+                    <input type="text" value={this.state.name} onChange={(event)=>this.setState({name: event.target.value})} id="name" name="name"/>
+                    <label for="comment">comment</label>
+                    <input type="text" value={this.state.comment} onChange={(event)=>this.setState({comment: event.target.value})} id="comment" name="comment"/>
+                    <br/>
+                    <input type="submit" value="Submit" id="newSubmit" onClick={this.submit.bind(this)}/>
+                  </form>
+                </div>
+            );
+  }
 
+  submit(event) {
+    event.preventDefault;
+    // axios.post('/whatever'.then)
+    var name = this.state.name;
+    var comment = this.state.comment;
 
-    componentDidMount() {
-        /**
-         * Your component is out there, mounted and ready to be used
-         * This function is useful to:
-         * * Fetch data from a web API
-         */
-    }
+    axios({
+        method: 'post',
+        url: '/post-feedback',
+        data: {
+        name: name,
+        comment: comment
+      }
+    });
+     // console.log(dog);
+// console.log(this.state.firstName);
 
-    /**
-     * Other lifecycle events
-     * * componentWillReceiveProps
-     * * shouldComponentUpdate
-     * * componentWillUpdate
-     * * componentDidUpdate
-     * * componentWillUnmount
-     */
+  }
 
-
-    /**
-     * ==================================================
-     * ==================================================
-     * ==================================================
-     */
-
-    /**
-     * ==================================================
-     * Custom functions
-     * ==================================================
-     */
-    sayHi() {
-        alert(this.state.salutation);
-    }
-    /**
-     * ==================================================
-     * ==================================================
-     * ==================================================
-     */
-
-
-    render() {
-        return (
-            <div>
-                {
-                    /*YOUR HTML GOES HERE e.g.*/
-                    // to read from the current state use: this.state
-                    // to read from props use: this.props
-                }
-                <input
-                    type="text"
-                    value={this.state.salutation}
-                    onChange={event => this.setState({ salutation: event.target.value })}
-                />
-                <label style={styles.successText}>{this.state.salutation}</label>
-                <button onClick={this.sayHi.bind(this)}>Say hi!</button>
-            </div>
-        );
-    }
-}
-
+};
+ 
+//-------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------
 const styles = {
     // STYLE RULES GO HERE e.g.
     successText: {
@@ -80,5 +55,6 @@ const styles = {
         color: 'green'
     }
 }
+
 
 export default Forum;

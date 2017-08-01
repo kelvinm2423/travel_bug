@@ -6,7 +6,7 @@ var mongoose = require("mongoose");
 require("./models/data");
 var app = express();
 // Sets an initial port. We'll use this later in our listener
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3700;
 
 // Run Morgan for Logging
 app.use(logger("dev"));
@@ -47,6 +47,9 @@ app.post("/api2", function (req, res) {
 });
 //to save form comments
 app.post('/post-feedback', function (req, res) {
+
+  // var name = req.body.name;
+  // var comment = req.body.comment;
 
   delete req.body._id; //for safety reasons, to make sure no one provides another id and delete others
   db.collection('usermodels').insertOne(req.body).then(function (r) {

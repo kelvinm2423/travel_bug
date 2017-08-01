@@ -8,9 +8,8 @@ class Forum extends React.Component {
       name: '',
       comment: ''
  }
-
+}
   render() {
-<<<<<<< HEAD
     return (    <div>
                   <form type="text" action="/post-feedback">
                     <label for="name">Name</label>

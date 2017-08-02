@@ -24,18 +24,23 @@ class Forum extends React.Component {
   }
 
   submit(event) {
-    event.preventDefault;
+    event.preventDefault();
     // axios.post('/whatever'.then)
     var name = this.state.name;
     var comment = this.state.comment;
 
-    axios({
+    Axios({
         method: 'post',
         url: '/post-feedback',
         data: {
         name: name,
-        comment: comment
-      }
+        comment: comment,
+        }, 
+        success: function(res){
+      console.log(res);    if (res.success) {
+            window.location = res.redirect;
+          }
+        }
     });
 
   }

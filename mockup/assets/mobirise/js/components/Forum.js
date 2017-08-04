@@ -36,11 +36,13 @@ class Forum extends React.Component {
         name: name,
         comment: comment,
         }, 
-        success: function(res){
-      console.log(res);    if (res.success) {
-            window.location = res.redirect;
-          }
-        }
+      //   success: function(res){
+      // console.log(res);    if (res.success) {
+      //       window.location = res.redirect;
+      //     }
+      //   }
+    }).then(function(){
+       window.location = "/view-feedbacks";
     });
 
   }

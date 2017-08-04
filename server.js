@@ -70,9 +70,9 @@ app.post('/post-feedback', function (req, res) {
 
 //to view the comments
 app.get('/view-feedbacks', function (req, res) {
-  db.collection('usermodels').find({}).toArray().then(function (feedbacks) {
-    res.status(200).json(feedbacks);
-  res.render("feedback",{comment: feedbacks});
+  db.collection('usermodels').find({}).toArray().then(function (feedbacks, opinions) {
+    // res.status(200).json(feedbacks);
+  res.render("feedback",{comment: feedbacks, opinions: opinions});
 });
 
 });

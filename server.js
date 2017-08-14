@@ -1,56 +1,104 @@
-// Include Server Dependencies
-var express = require("express");
-var bodyParser = require("body-parser");
-var logger = require("morgan");
-var mongoose = require("mongoose");
-var exphbs = require("express-handlebars");
-require("./models/data");
+var express = require('express');
 var app = express();
-// Sets an initial port. We'll use this later in our listener
-var PORT = process.env.PORT || 3700;
+var port = process.env.PORT || 3000;
+var path = require('path');
+var userModel = require('./schema.js');
+var bodyParser = require("body-parser");
+require("./data.js");
+var exphbs = require("express-handlebars");
 
-// Run Morgan for Logging
-app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
-app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+app.use(bodyParser.json({ type: "application/json" }));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
-app.use(express.static("./public"));
 
-// -------------------------------------------------
+app.use(express.static('public'));
 
-mongoose.connect("mongodb://localhost:27017/papertrails");
+var mongoose = require('mongoose');
+var User = require('./users.js');
+
+if (process.env.MONGODB_URI){
+
+mongoose.connect(process.env.MONGODB_URI);
+
+}
+else {
+
+mongoose.connect('mongodb://localhost/userData');
+
+}
 var db = mongoose.connection;
 
-db.on("error", function (err) {
-  console.log("Mongoose Error: ", err);
+db.on("error", function(error) {
+    console.log("Mongoose Error: ", error);
 });
 
-db.once("open", function () {
-  console.log("Mongoose connection successful.");
+db.once("open", function() {
+    console.log("Mongoose connection successful.");
 });
 
-// -------------------------------------------------
+//post route
+// //client side INTO db
+app.post('/Users', function(req, res) {
 
-// Main "/" Route. This will redirect the user to our rendered React application
-// This is the route we will send GET requests to retrieve.
-// We will call this route the moment our page gets rendered
-app.get("/api", function (req, res) {
-  res.send('hello');
+      var idk = new User(req.body);
+
+    idk.save(function(error, doc) {
+
+        if (error) {
+            console.log("DataBase POST Error" + error);
+        }
+        // Or send the doc to the browser as a json object
+        else {
+            res.json(doc);
+        }
+
+
+    });
+
 });
 
-// This is the route we will send POST requests to save each click.
-// We will call this route the moment the "click" or "reset" button is pressed.
-app.post("/api2", function (req, res) {
-  console.log(req.body.city);
+app.get('/Users', function(req, res) {
+
+    User.find({}, function(error, doc) {
+        // Log any errors
+        if (error) {
+            console.log("DataBase GET error" + error);
+        }
+        // Or send the doc to the browser as a json object
+        else {
+            res.json(doc);
+
+
+        }
+
+    });
 
 });
-//to save form comments
+
+app.get('/Users/:id', function(req, res) {
+
+    User.findById(req.params.id, function(error, doc) {
+        // Log any errors
+        if (error) {
+            console.log(error);
+        }
+        // Or send the doc to the browser as a json object
+        else {
+
+
+            res.json(doc);
+
+
+        }
+
+    });
+
+});
+
 app.post('/post-feedback', function (req, res) {
-  // var name = req.body.name;
-  // var comment = req.body.comment;
 
   delete req.body._id; //for safety reasons, to make sure no one provides another id and delete others
   db.collection('usermodels').insertOne(req.body).then(function (r) {
@@ -58,31 +106,26 @@ app.post('/post-feedback', function (req, res) {
       success: true,
       redirect: "/view-feedbacks"
     });
-    // res.redirect("/view-feedbacks");
   });
-  // console.log(req.body.name);
-  // var newUserModel = new userModel({
-  //   name: name,
-  //   comment: comment
-  // });
-
+  
 });
 
 //to view the comments
 app.get('/view-feedbacks', function (req, res) {
   db.collection('usermodels').find({}).toArray().then(function (feedbacks, opinions) {
-    // res.status(200).json(feedbacks);
-  res.render("feedback",{comment: feedbacks, opinions: opinions});
+      res.render("feedback",{comment: feedbacks});
 });
 
 });
-// -------------------------------------------------
 
 app.use(function (req, res) {
-  res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(__dirname + "/views/app.html");
 });
 
-// Starting our express server
-app.listen(PORT, function () {
-  console.log("App listening on PORT: " + PORT);
+
+app.listen(port, function() {
+
+    console.log('connected and listening on port ' + port);
+
 });
+
